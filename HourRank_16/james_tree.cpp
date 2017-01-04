@@ -1,5 +1,5 @@
 /**
-** Problem:
+** Problem: https://www.hackerrank.com/contests/hourrank-16/challenges/james-tree
 **/
 #include <bits/stdc++.h>
 using namespace std;
@@ -28,10 +28,42 @@ template<class T1,class T2,class T3> void DEBUG(T1 e1, T2 e2, T3 e3){    cout <<
 //         return a<b;
 //     }
 // };
+#define MOD 1000000009
+LL answer=0;
+LL getd(VVI &t,LL i,LL n){
+    VI v(n,0);
+    
+}
 
+void compute(VI &p,int x,int y,VVI &tree,int n){
+    if(x==y){
+        VVI t=tree;
+        for(int i:p){
+            answer+=getd(t,i,n);
+            for(j,0,n-2) t[i][j]=t[j][i]=0;
+        }
+    }else{
+        LOOP(i,x,y){
+            swap(p[i],p[x]);
+            compute(p,x+1,y,tree,n);
+            swap(p[i],p[x]);
+        }
+    }
+}
 
 int main(){
-
+    int n;
+    answer=0;
+    cin>>n;
+    VVI tree(n,VI(n,0));
+    LOOP(i,1,n-1){
+        int u,v,w;
+        cin>>u>>v>>w;
+        tree[u][v]=tree[v][u]=w;
+    }
+    VI p;
+    LOOP(i,1,n-1) p.PB(i);
+    compute(p,0,n-2,tree,n);
 
     return 0;
 }

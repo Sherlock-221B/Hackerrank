@@ -1,5 +1,5 @@
 /**
-** Problem:
+** Problem: https://www.hackerrank.com/contests/hourrank-16/challenges/pile-of-candies
 **/
 #include <bits/stdc++.h>
 using namespace std;
@@ -22,16 +22,40 @@ template<class T1> void DEBUG(T1 e1){    cout << e1 << endl;}
 template<class T1,class T2> void DEBUG(T1 e1, T2 e2){    cout << e1 << ", " << e2 << endl;}
 template<class T1,class T2,class T3> void DEBUG(T1 e1, T2 e2, T3 e3){    cout << e1 << ", " << e2 << ", " << e3 << endl;}
 
-// class cmp{
-//     public:
-//     bool operator() (const object &a,const object &b){
-//         return a<b;
-//     }
-// };
+class cmp{
+    public:
+    bool operator() (const int &a,const int &b){
+        return a>b;
+    }
+};
 
 
 int main(){
 
-
+    int n;
+    cin>>n;
+    priority_queue<int,VI,cmp> pq;
+    VI v;
+    LOOP(i,0,n-1){
+        int x;
+        cin>>x;
+        v.PB(x);
+        pq.push(x);
+    }
+    int x=pq.top();
+    pq.pop();
+    pq.push(2*x);
+    x=pq.top();
+    int count=0;
+    LOOP(i,0,n-1){
+        v[i]*=2;
+        LL mn=v[0];
+        LOOP(j,1,n-1){
+            MIN(mn,v[j]);
+        }
+        v[i]/=2;
+        if(mn==x) count++;
+    }
+    cout<<x<<" "<<count;
     return 0;
 }

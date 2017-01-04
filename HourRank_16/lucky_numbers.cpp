@@ -1,5 +1,5 @@
-/**
-** Problem:
+/** 
+** Problem: https://www.hackerrank.com/contests/hourrank-16/challenges/leonardo-and-lucky-numbers
 **/
 #include <bits/stdc++.h>
 using namespace std;
@@ -31,7 +31,20 @@ template<class T1,class T2,class T3> void DEBUG(T1 e1, T2 e2, T3 e3){    cout <<
 
 
 int main(){
-
+    LL q,n;
+    cin>>q;
+    while(q--){
+        cin>>n;
+        bool yes=false;
+        while(n>0){
+            if(n%4==0){
+                yes=true; break;
+            }
+            n-=7;
+        }
+        if(yes) cout<<"Yes"<<endl;
+        else cout<<"No"<<endl;
+    }
 
     return 0;
 }
